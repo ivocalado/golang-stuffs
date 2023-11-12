@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+
 	//Run google.golang.org/api/serviceusage/v1 to retrieve the serviceusage package.
 	"google.golang.org/api/serviceusage/v1"
 )
@@ -18,12 +19,14 @@ func main() {
 	svc, err := serviceusage.NewService(ctx)
 	if err != nil {
 		log.Fatalf("Failed to create serviceusage client: %v", err)
+		return
 	}
 
 	// Call the services.list method to get a list of all enabled services
 	resp, err := svc.Services.List(fmt.Sprintf("projects/%s", projectID)).Filter("state:ENABLED").Do()
 	if err != nil {
 		log.Fatalf("Failed to list services: %v", err)
+		return
 	}
 
 	// Print the name of each enabled service
