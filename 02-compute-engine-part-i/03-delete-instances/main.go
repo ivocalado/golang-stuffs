@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"google.golang.org/api/compute/v1"
-	"google.golang.org/api/option"
 )
 
 func deleteInstance(projectID, instanceName, zone string) error {
@@ -16,7 +15,7 @@ func deleteInstance(projectID, instanceName, zone string) error {
 	fmt.Printf("Deleting instance %s in project %s\n", instanceName, projectID)
 
 	// Create a new Compute Engine service client
-	service, err := compute.NewService(ctx, option.WithScopes(compute.ComputeScope))
+	service, err := compute.NewService(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to create service: %v", err)
 	}

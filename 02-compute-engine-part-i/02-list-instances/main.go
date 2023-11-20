@@ -6,7 +6,6 @@ import (
 	"log"
 
 	"google.golang.org/api/compute/v1"
-	"google.golang.org/api/option"
 )
 
 // Grant roles/compute.admin to the service account
@@ -15,7 +14,7 @@ func main() {
 
 	// Create a new Compute Service client
 	ctx := context.Background()
-	computeService, err := compute.NewService(ctx, option.WithScopes(compute.ComputeScope))
+	computeService, err := compute.NewService(ctx)
 	if err != nil {
 		log.Fatalf("Failed to create Compute Service client: %v", err)
 	}
